@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+</head>
+<body>
+
+<div id="">
+    <span style="background-color: #2aabd2">
+        <h1 >{{ prize.name }}</h1>
+        <img src="{% static prize.img %}" style="width: 30%;">
+        <h1>{{ prize.content }}</h1>
+        <h1>开奖时间:{{ prize.usedTime }}</h1>
+
+        {% if prize.url != null %}
+        <a href={{ prize.url }} target="_blank">点击获取抽奖码</a>
+        {% endif %}
+    </span>
+    {% if messages %}
+        <script>
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        </script>
+    {% endif %}
+    <form method="post" action="/prize/{{ prize.id }}/" id="join">
+        {% csrf_token %}
+        <label>抽奖码</label>
+        <input type="text" id="code" name="code">
+        <input type="submit" id="submit" name="submit" onclick="tijiao()" value="点击参与">
+    </form>
+</div>
+
+
+
+<div id="comment">
+    <h1>已参与的人</h1>
+    <ul>
+{#    {{ join }}<br>{{ prize }}#}
+        {% for item in joiner %}
+            <li>{{ item.name }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+</body>
+{#<script src="{% static 'base/js/jquery-1.8.3.min.js' %}"></script>#}
+<script src="{% static 'base/js/jquery-3.4.1.min.js' %}"></script>
+<script src="{% static 'prize/js/prize.js' %}"></script>
+{#<script>#}
+{#    function tijiao(){#}
+{#        var prize = '{{ prize|safe }}'.toString#}
+{#        code = document.getElementById("code").innerText#}
+{#        var aaa = JSON.stringify(prize)#}
+{#        alert(prize.code)#}
+{#        if (code=prize.code){#}
+{#            $('#join').submit()#}
+{#        }#}
+{#        else {#}
+{#            alert('密码错误')#}
+{#        }#}
+{#    }#}
+{##}
+{#</script>#}
+</html>

@@ -1,0 +1,32 @@
+{% extends 'mylucky/base.html' %}
+
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" href="{% static 'login/css/login.css' %}">
+    <script src="{% static 'login/js/login.js' %}"></script>
+{% endblock linkscript %}
+
+{% block base %}
+    <div class="glass" style="background: url({% static 'media/img/bg.png' %}) no-repeat center top / cover fixed"></div>
+    <div class="content">
+        <div class="text-center con" style="margin: 0 auto;" data-aos="fade-right">
+            <h2 class="mb-4" style="color:whitesmoke">登录Lucky</h2>
+            <form id="login" name="login">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="text" class="form-control" id="account" name="account" placeholder="账号">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="password" class="form-control" id="pwd" name="pwd" placeholder="密码">
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary btn-shadow btn-lg" id="button" onclick="checklogin()">登录</button>
+                    </div>
+                </div>
+            </form>
+            <a href="/register/" style="margin-top: 20px">没有Lucky账号？</a>
+        </div>
+    </div>
+
+{% endblock base %}

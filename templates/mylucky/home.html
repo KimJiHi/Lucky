@@ -1,0 +1,238 @@
+{% extends 'mylucky/base.html' %}
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" href="{% static 'home/css/home.css' %}">
+    <script type="text/javascript" src="{% static 'home/js/home.js' %}">
+    $('.btn').on('click',function () {
+        $('.btn').toggleClass('btnc');
+        $('.sidebar').toggleClass('side');
+
+    });
+</script>
+{% endblock linkscript %}
+{% block base %}
+{#顶部导航栏#}
+    <nav id="header-navbar" class="navbar navbar-expand-lg py-4 navbar-transparent">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center text-white" href="/">
+                <h3 class="font-weight-bolder mb-0">LUCKY</h3>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header" aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-nav-header">
+                <form class="form-inline m-auto">
+                    <input class="form-control" style="width: 20rem" type="text" placeholder="Search">
+                    <button class="btn btn-primary" type="button">Search</button>
+                </form>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mine/">{{mine}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">退出登录</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+{#左侧导航栏#}
+    <div class="sidebar">
+        <ul>
+            <li><a href="javascript:void(0)" id="all" name="all">全部</a></li>
+            <li>
+                <a href="#collapseExample" data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">分类▾</a>
+                    <ul class="collapse sideitem" id="collapseExample" style="background: #5a6268">
+                        <li><a href="#" id="dianzi" style="font-size: 20px;height: 3rem;line-height: 3rem;">电子/数码</a></li>
+                        <li><a href="#" id="jiating" style="font-size: 20px;height: 3rem;line-height: 3rem">家庭/日用</a></li>
+                        <li><a href="#" id="fushi" style="font-size: 20px;height: 3rem;line-height: 3rem">服饰/护理</a></li>
+                        <li><a href="#" id="jiushui" style="font-size: 20px;height: 3rem;line-height: 3rem">食品/酒水</a></li>
+                        <li><a href="#" id="dajiang" style="font-size: 20px;height: 3rem;line-height: 3rem">超大奖品</a></li>
+                    </ul>
+            </li>
+            <li><a href="#">猜你喜欢</a></li>
+            <li><a href="javascript:void(0)" id="showrelease"  name="showrelease">发布抽奖</a></li>
+
+        </ul>
+    </div>
+
+{#显示奖品#}
+    <div class="litem col-md-1" name="litem" id="litem">
+    <div class="row">
+        <div class="col-md-3 blog-item-wrapper aos-animate" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="#"><img src="{% static 'media/img/default.png' %}"></a>
+                </div>
+                <div class="blog-text">
+                    <div class="blog-tag"><h6><small>超级大奖</small></h6></div>
+                    <div class="blog-title"><h4>特斯拉models p90d</h4></div>
+                    <div class="blog-meta"><p>2020/3/5</p></div>
+                    <div class="blog-desc"><p>这份超级大奖到底花落谁家呢这份超级大奖到底花落谁家呢这份超级大奖到底花落谁家呢这份超级大奖到底花落谁家呢这份超级大奖到底花落谁家呢这份超级大奖到底花落谁家呢</p></div>
+                    <div class="blog-author"><p>by JinHui</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 blog-item-wrapper aos-animate" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="#"><img src="{% static 'media/img/default.png' %}"></a>
+                </div>
+                <div class="blog-text">
+                    <div class="blog-tag"><h6><small>超级大奖</small></h6></div>
+                    <div class="blog-title"><h4>特斯拉models p90d</h4></div>
+                    <div class="blog-meta"><p>2020/3/5</p></div>
+                    <div class="blog-desc"><p>这份超级大奖到底花落谁家呢</p></div>
+                    <div class="blog-author"><p>by JinHui</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 blog-item-wrapper aos-animate" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="#"><img src="{% static 'media/img/default.png' %}"></a>
+                </div>
+                <div class="blog-text">
+                    <div class="blog-tag"><h6><small>超级大奖</small></h6></div>
+                    <div class="blog-title"><h4>特斯拉models p90d</h4></div>
+                    <div class="blog-meta"><p>2020/3/5</p></div>
+                    <div class="blog-desc"><p>这份超级大奖到底花落谁家呢</p></div>
+                    <div class="blog-author"><p>by JinHui</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 blog-item-wrapper aos-animate" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="#"><img src="{% static 'media/img/default.png' %}"></a>
+                </div>
+                <div class="blog-text">
+                    <div class="blog-tag"><h6><small>超级大奖</small></h6></div>
+                    <div class="blog-title"><h4>特斯拉models p90d</h4></div>
+                    <div class="blog-meta"><p>2020/3/5</p></div>
+                    <div class="blog-desc"><p>这份超级大奖到底花落谁家呢</p></div>
+                    <div class="blog-author"><p>by JinHui</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 blog-item-wrapper aos-animate" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="#"><img src="{% static 'media/img/default.png' %}"></a>
+                </div>
+                <div class="blog-text">
+                    <div class="blog-tag"><h6><small>超级大奖</small></h6></div>
+                    <div class="blog-title"><h4>特斯拉models p90d</h4></div>
+                    <div class="blog-meta"><p>2020/3/5</p></div>
+                    <div class="blog-desc"><p>这份超级大奖到底花落谁家呢</p></div>
+                    <div class="blog-author"><p>by JinHui</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 blog-item-wrapper aos-animate" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="#"><img src="{% static 'media/img/default.png' %}"></a>
+                </div>
+                <div class="blog-text">
+                    <div class="blog-tag"><h6><small>超级大奖</small></h6></div>
+                    <div class="blog-title"><h4>特斯拉models p90d</h4></div>
+                    <div class="blog-meta"><p>2020/3/5</p></div>
+                    <div class="blog-desc"><p>这份超级大奖到底花落谁家呢</p></div>
+                    <div class="blog-author"><p>by JinHui</p></div>
+                </div>
+            </div>
+        </div>
+        <ul>
+            <li id="list"></li>
+        </ul>
+    </div>
+{#            <ul>#}
+{#                {% for item in prize %}#}
+{#                <li style="list-style: none">#}
+{#                    <a href="/prize/{{ item.id }}">#}
+{#                        <p>{{ item.name }}  {{ item.creatTime }} {{ item.puser.name }}</p>#}
+{#                        <span class="unit">{{item.specifics}}</span>#}
+{#                    </a>#}
+{#                </li>#}
+{#                {% endfor %}#}
+{#            </ul>#}
+</div>
+
+
+
+{#发布抽奖#}
+    <div class="release" id="release">
+    <div class="released" id="released">
+    <form method="post" action="/release/" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <select required="required" class="form-control-sm" id="type" name="type">
+                    <option value="1">电子/数码</option>
+                    <option value="2">家庭/日用</option>
+                    <option value="3">服饰/护理</option>
+                    <option value="4">食品/酒水</option>
+                    <option value="5">超大奖品</option>
+                </select>
+            </div>
+            <div class="col-md-12 form-group">
+                <input required="required" type="text" class="form-control" id="name" name="name" placeholder="名称">
+            </div>
+            <div class="col-md-12 form-group">
+                <input required="required" type="number" class="form-control" id="num" name="num" placeholder="数量">
+            </div>
+            <div class="col-md-12 form-group">
+                    <input required="required" type="text" class="form-control" id="content" name="content" placeholder="简介">
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="url" class="form-control" id="purl" name="purl" placeholder="抽奖码链接，没有不填写">
+            </div>
+            <div class="col-md-12 form-group">
+                <input max="10" type="text" class="form-control" id="code" name="code" placeholder="抽奖码，没有不填写">
+            </div>
+            <div class="col-md-12 form-group">
+                <input type="file" class="form-control" id="img" name="img" placeholder="照片">
+            </div>
+            <div class="col-md-12 form-group">
+                <input required="required" type="datetime-local" class="form-control" id="usetime" name="usetime" placeholder="开奖时间">
+            </div>
+            <div class="col-md-12 text-center">
+{#                <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">发布</button>#}
+                <button class="btn btn-secondary" id="cancel" name="cancel">取消</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">提交数据</button>
+            </div>
+        </div>
+        <!-- 模态框 -->
+        <div class="modal fade" id="myModal">
+          <div class="modal-dialog">
+            <div class="modal-content">
+
+              <!-- 模态框头部 -->
+              <div class="modal-header">
+                <h4 class="modal-title" style="color: black">奖品提交</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+
+              <!-- 模态框主体 -->
+              <div class="modal-body" style="color: black">
+                确认奖品数据无误？
+              </div>
+
+              <!-- 模态框底部 -->
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">再看看</button>
+                  <button type="submit" class="btn btn-primary">确认</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+    </form>
+
+    </div>
+
+    </div>
+
+{% endblock base %}

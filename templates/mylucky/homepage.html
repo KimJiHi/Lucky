@@ -1,0 +1,84 @@
+{% extends 'mylucky/base.html' %}
+{% load static %}
+
+{% block base %}
+    <nav id="header-navbar" class="navbar navbar-expand-lg py-4 navbar-transparent">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center text-white" href="/">
+            <h3 class="font-weight-bolder mb-0">LUCKY</h3>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-nav-header" aria-controls="navbar-nav-header" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="lnr lnr-menu"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar-nav-header">
+            <ul class="navbar-nav ml-auto">
+                {% if user != null %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/mine/">{{ user }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout/">退出登录</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="/login/">登录</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/register/">注册</a>
+                    </li>
+                {% endif %}
+
+
+                 <li class="nav-item only-desktop">
+                    <a class="nav-link" id="side-nav-open" href="#">
+                        <span class="lnr lnr-menu"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    <div id="side-nav" class="sidenav">
+	<a href="javascript:void(0)" id="side-nav-close">&times;</a>
+
+	<div class="sidenav-content">
+		<p>
+			金辉 毕业设计作品
+		</p>
+		<p>
+			<span class="fs-16 primary-color">电信专升本1803</span>
+		</p>
+		<p>718931081@qq.com</p>
+	</div>
+</div>
+
+{% endblock base %}
+
+{% block title %}
+    {% if user %}
+        <div class="container text-center">
+            <h1 class="display-1 mb-4" style="margin-top: 10%;"><a href="/home/">进入<br>开始</a></h1>
+        </div>
+    {% else %}
+        <div class="container text-center">
+            <h1 class="display-1 mb-4" style="margin-top: 10%;"><a href="/login/">请先<br>登录</a></h1>
+        </div>
+    {% endif %}
+
+    <div class="triangle triangle-1">
+  	    <img src="{% static 'homepage/img/obj_triangle.png' %}" alt="">
+    </div>
+    <div class="triangle triangle-2">
+  	    <img src="{% static 'homepage/img/obj_triangle.png' %}" alt="">
+    </div>
+    <div class="triangle triangle-3">
+  	    <img src="{% static 'homepage/img/obj_triangle.png' %}" alt="">
+    </div>
+    <div class="triangle triangle-4">
+  	    <img src="{% static 'homepage/img/obj_triangle.png' %}" alt="">
+    </div>
+    <div class="circle-1"></div>
+    <div class="circle-2"></div>
+    <div class="circle-3"></div>
+{% endblock title %}

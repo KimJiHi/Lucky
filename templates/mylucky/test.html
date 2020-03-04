@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        {% load static %}
+        <script src="{% static 'base/js/jquery-1.8.3.min.js' %}">
+
+        </script>
+        <script>
+        $(function () {
+            // $.ajaxSetup({
+            //        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }　});
+            $.ajax({
+                type: "post",
+                url: "/ajax/",
+                dataType: "json",
+                success: function (data) {
+                    console.info(data);
+                    for (var i = 0; i < data.length; i++) {
+                        console.info(data[i][1]);
+                        var pOption = "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
+                        var aaa = data[i][1]
+                        $("#province").append(pOption);
+                        document.getElementById('#aaa').innerText(aaa)
+                    }
+                }
+            });
+
+        　});
+        </script>
+        <style>
+            select{
+                width:100px;
+            }
+        </style>
+    </head>
+    <body>
+        省：
+        <select name="" id="province">
+            <option value="">请选择</option>
+        </select>
+    <h1 id="aaa">vvvvvvvv</h1>
+
+    </body>
+</html>

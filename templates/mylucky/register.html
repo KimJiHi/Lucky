@@ -1,0 +1,45 @@
+{% extends 'mylucky/base.html' %}
+
+{% load static %}
+{% block linkscript %}
+    <link rel="stylesheet" href="{% static 'register/css/register.css' %}">
+    <script src="{% static 'register/js/register.js' %}"></script>
+{% endblock linkscript %}
+
+{% block base %}
+    <div class="glass" style="background: url({% static 'media/img/bg.png' %}) no-repeat center top / cover fixed"></div>
+    <div class="content">
+        <div class="text-center con" style="margin: 0 auto;" data-aos="fade-right">
+            <h2 class="mb-4" style="color: whitesmoke">注册</h2>
+            <form method="post" name="registerform" action="/register/" >
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="text" class="form-control" id="account" name="account" placeholder="账号">
+                        <span id="accounter1" class="error">账号长度为6-12</span>
+                        <span id="accounter2" class="error">账号已被占用，请重新输入</span>
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="text" class="form-control" id="name" name="name" placeholder="昵称">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="text" class="form-control" id="email" name="email" placeholder="邮箱">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="text" class="form-control" id="phoneNumber" name="phoneNumber" placeholder="手机">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="password" class="form-control" id="pwd" name="pwd" placeholder="密码">
+                    </div>
+                    <div class="col-md-12 form-group">
+                        <input required="required" type="password" class="form-control" id="pwd2" name="pwd2" placeholder="确认密码">
+                        <span id="pwdd" class="error">两次密码不相同</span>
+                    </div>
+                    <div class="col-md-12 text-center">
+                        <button class="btn btn-primary btn-shadow btn-lg" type="submit" name="submit">注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock base %}

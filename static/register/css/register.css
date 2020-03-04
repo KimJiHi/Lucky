@@ -1,0 +1,40 @@
+.glass{
+	animation: fadeInFromTop cubic-bezier(0.785, 0.135, 0.15, 0.86) 1s forwards;
+	position: fixed;
+	width: 120%;
+	height: 120%;
+	top: 0;left: 0;right: 0;bottom: 0;
+	-webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    -o-filter: blur(20px);
+	filter: blur(20px);
+
+}
+.content {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;left: 0;right: 0;bottom: 0;
+	padding-top: 10%;
+	word-break: break-all;
+	position: absolute;
+	display: flex!important;
+/ / 不能用transform: translate(- 50 %, - 50 %) 来代替，否则效果不是我们想要的，目前不知原因。 overflow: hidden;
+}
+
+.con{
+	position: relative;
+	width: 30%;
+	height: 50%;
+	/*margin-top: 20%;*/
+	color: #cccccc;
+}
+
+.error{
+    text-align: center;
+    font-size:0.5rem;
+    color: whitesmoke;
+    font-weight: bold;
+    display: none;
+}

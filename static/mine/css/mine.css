@@ -1,0 +1,94 @@
+html,body {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: url(../img/bf.JPG);
+    background-size: cover;
+    overflow: auto;
+}
+body {
+    display: flex;
+    align-items: center; /*定义body的元素垂直居中*/
+    justify-content: center; /*定义body的里的元素水平居中*/
+}
+
+.mainbg{
+    position: fixed;
+    width: 80%;
+    height: 90%;
+    /*top: 0;left: 0;right: 0;bottom: 0;*/
+    background: url("../img/bf.JPG") no-repeat center top / cover fixed;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -ms-filter: blur(20px);
+    -o-filter: blur(20px);
+	filter: blur(20px);
+}
+
+.main{
+    width: 80%;
+    height: 90%;
+    position: fixed;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, .8);
+}
+
+
+.sidebar{
+    width: 20%;
+    height: 100%;
+    float: left;
+    border-right: 3px solid gray;
+    transition: 0.8s all;
+}
+.sidebar img{
+    width: 130%;
+    height: 130%;
+    margin-left: -18%;
+    margin-top: -18%;
+}
+
+.image{
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: -30px auto 0;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    border: black 2px;
+}
+
+.sidebar ul{
+    margin: 0;
+    padding: 0;
+}
+.sidebar ul li{
+    list-style: none;
+}
+.sidebar ul li a{
+    text-decoration: none;
+    font-size: 30px;
+    color: #4e555b;
+    height: 5rem;
+    width: 100%;
+    line-height: 5rem;
+    text-align: center;
+    display: block;
+    transition: 0.6s all;
+}
+.sidebar ul li a:active{
+    background: #95a5a6;
+    color: #4A00E0;
+}
+.sidebar ul li a:hover {
+    /*background: #95a5a6;*/
+    color: palevioletred;
+}
+.sidecontent{
+    width: 79%;
+    height: 100%;
+    float: right;
+}
+

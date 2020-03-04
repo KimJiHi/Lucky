@@ -1,0 +1,10 @@
+{% extends 'mylucky/mine/minebase.html' %}
+{% block content %}
+    <ul>
+    {% for item in list %}
+        <li><a href="/prize/{{ item.id }}">{{ item.name }}</a></li>
+    {% endfor %}
+    <h1>什么都没了</h1>
+    </ul>
+
+{% endblock %}
