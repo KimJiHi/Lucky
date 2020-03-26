@@ -128,24 +128,37 @@ $(document).ready(function () {
 	}
 
 
-
-    var uname = document.getElementById("uname").innerText
-	var table = document.getElementById("table")
-    var lbutton = document.getElementById("lbutton")
+	const uname = document.getElementById("uname").innerText;
+	const table = document.getElementById("table");
+	const lbutton = document.getElementById("lbutton");
+	const li1 = document.getElementById("li1");
+	const li2 = document.getElementById("li2");
+	const li3 = document.getElementById("li3");
+	const li4 = document.getElementById("li4");
+	const li5 = document.getElementById("li5");
+	const li6 = document.getElementById("li6");
 	table.style.display = "none"
     lbutton.style.display = "block"
 
 	function getcookie(){
-	    //
+
 	    const result = document.cookie.replace(/\s/g, '');
         const resultArr = result.split(';');
         for (let i = 0; i < resultArr.length; i += 1) {
             const nameArr = resultArr[i].split('=');
             if (nameArr[0] == uname) {
-                table.style.display='block'
+            	const luckystr = nameArr[1].split(',')
+				table.style.display = 'block'
                 lbutton.style.display = "none"
+				li1.innerHTML=luckystr[0]
+        		li2.innerHTML=luckystr[1]
+				li3.innerHTML=luckystr[2]
+				li4.innerHTML=luckystr[3]
+        		li5.innerHTML=luckystr[4]
+				li6.innerHTML=luckystr[5]
             }
         }
+
         return '';
     }
 
@@ -170,11 +183,7 @@ $(document).ready(function () {
 })
 
     function setcookie(name) {
-        var table = document.getElementById("table")
-        var lbutton = document.getElementById("lbutton")
-        var li1 = document.getElementById("li1")
-        var li2 = document.getElementById("li2")
-        var li3 = document.getElementById("li3")
+
         const curDate = new Date();
         const curTamp = curDate.getTime();
         const curDay = curDate.toLocaleDateString();
@@ -186,13 +195,19 @@ $(document).ready(function () {
         const leftTamp = 24 * 60 * 60 * 1000 - passedTamp;
         const leftTime = new Date();
         leftTime.setTime(leftTamp + curTamp);
-        document.cookie = `${name}=no;expires=${leftTime.toGMTString()}`;
-        table.style.display = "block"
-        lbutton.style.display = "none"
-
-        li1.innerText="aaaa"
-        li2.innerText="bbbb"
-
+		var x=16
+		var y=1
+        var rand = parseInt(Math.random() * (x - y + 1) + y);
+		var a = []
+        var str = ['睡懒觉','锻炼身体','发布抽奖','参与抽奖','吃醋','通宵打游戏','夜宵吃烧烤','加班工作','小酌一杯','跳槽','参加聚餐','啊啊啊','北包包','钱钱钱','聪聪聪']
+		for(i=0;i<6;i++){
+			rand = parseInt(Math.random() * (str.length - y + 1) + y);
+			a[i] = str[rand]
+		}
+        document.cookie = `${name}=${a};expires=${leftTime.toGMTString()}`;
+        // table.style.display = "block"
+        // lbutton.style.display = "none"
+		location.reload()
     }
 
 

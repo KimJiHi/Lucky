@@ -3,44 +3,27 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
-        {% load static %}
-        <script src="{% static 'base/js/jquery-1.8.3.min.js' %}">
-
-        </script>
-        <script>
-        $(function () {
-            // $.ajaxSetup({
-            //        data: {csrfmiddlewaretoken: '{{ csrf_token }}' }　});
-            $.ajax({
-                type: "post",
-                url: "/ajax/",
-                dataType: "json",
-                success: function (data) {
-                    console.info(data);
-                    for (var i = 0; i < data.length; i++) {
-                        console.info(data[i][1]);
-                        var pOption = "<option value='"+data[i][0]+"'>"+data[i][1]+"</option>";
-                        var aaa = data[i][1]
-                        $("#province").append(pOption);
-                        document.getElementById('#aaa').innerText(aaa)
-                    }
-                }
-            });
-
-        　});
-        </script>
-        <style>
-            select{
-                width:100px;
-            }
-        </style>
+        <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
+        <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+        <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
     </head>
     <body>
-        省：
-        <select name="" id="province">
-            <option value="">请选择</option>
-        </select>
-    <h1 id="aaa">vvvvvvvv</h1>
+
+  <div class="col-sm-6">
+      <input type="text" class="form-control datetimepicker-input" id="date" data-toggle="datetimepicker" data-target="#datetimepicker5" placeholder="选择发布时间">
+  <script type="text/javascript">
+      $(function () {
+          $('#date').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm',
+      locale: 'zh-CN'    });
+      });
+  </script>
+  </div>
+
+
 
     </body>
 </html>

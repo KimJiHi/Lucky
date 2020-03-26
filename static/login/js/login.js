@@ -7,10 +7,11 @@ function checklogin() {
     acc = account.value
     pwd = password.value
     console.log("aaa")
+    var flag = true
     $.post("/checklogin/", {"account":acc,"pwd":pwd}, function(data) {
         if (data.status == "error"){
             alert('密码错误')
-            return
+            return false
         }
         else {
             form.method="POST"
@@ -18,5 +19,4 @@ function checklogin() {
             form.submit()
         }
     })
-
 }

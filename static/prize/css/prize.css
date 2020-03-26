@@ -1,0 +1,40 @@
+.input-group {
+    width: 15%;
+    margin: 0 auto;
+    transition: 0.3s all;
+}
+.item-img {
+    transition: all 0.5s;
+    width: 100%;
+}
+.item-img:hover {
+    transform: scale(1.5);
+}
+.input-group:focus-within {
+    width: 20%;
+    transition: 0.3s all;
+}
+.xiaoxi {
+    position: absolute;
+    background-color: rgba(39,44,49,1);
+    display: none;
+}
+.xiaoxi ul {
+    margin: 0;
+    padding: 0 10px;
+}
+
+.xiaoxi ul li {
+    list-style: none;
+}
+
+.imgdiv{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.userimg:hover .xiaoxi{
+    display: block;
+}

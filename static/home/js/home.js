@@ -1,164 +1,136 @@
 $(document).ready(function(){
-    var list = document.getElementById('list')
-    var all = document.getElementById('all')
-    var bdianzi = document.getElementById('dianzi')
-    var bjiating = document.getElementById('jiating')
-    var bfushi = document.getElementById('fushi')
-    var bjiushui = document.getElementById('jiushui')
-    var bdajiang = document.getElementById('dajiang')
     $("#showrelease").click(function(){
         $("#release").slideDown();
         });
     $("#cancel").click(function () {
         $("#release").slideUp();
     });
-    // 全部奖品
-    $('#all').click(function () {
-        list.innerHTML = null
-        all.style.background = "#95a5a6"
-        bdianzi.style.background = "#5a6268"
-        bjiating.style.background = "#5a6268"
-        bfushi.style.background = "#5a6268"
-        bjiushui.style.background = "#5a6268"
-        bdajiang.style.background = "#5a6268"
+    $("#control").click(function () {
+        if ($(this).text()=='展开导航'){
+            $(this).text('关闭导航');
+        }
+        else {
+            $(this).text('展开导航');
+        }
+        $("#sidebars").toggle();
+    });
+
+    $("#allList").click(function () {
+        $(this).css('color','#9F79EE')
+        $("#dianzi").css('color','black')
+        $("#jiating").css('color','black')
+        $("#fushi").css('color','black')
+        $("#jiushui").css('color','black')
+        $("#dajiang").css('color','black')
         $.ajax({
-            type: "GET",
-            url: "/homelist/",
-            dataType: "json",
-            success:function (arg) {
-                if (arg.status) {
-                    var plist = JSON.parse(arg.data)
-                    for(i=0;i<=plist.length;i++){
-                        list.innerHTML = list.innerHTML+"<a href=/prize/"+plist[i]["pk"]+">"+plist[i]["fields"]["name"]+plist[i]["fields"]["content"]+""
-                    }
-                }
+            url:'/homelist/',
+            dataType:'html',
+            success:function (data) {
+                $("#litem").html(data)
             }
         })
-    })
-    //电子数码
-    $('#dianzi').click(function () {
-        list.innerHTML = null
-        bdianzi.style.background = "#95a5a6"
-        all.style.background = "#2c3e50"
-        bjiating.style.background = "#5a6268"
-        bfushi.style.background = "#5a6268"
-        bjiushui.style.background = "#5a6268"
-        bdajiang.style.background = "#5a6268"
-        $.ajax({
-            type: "GET",
-            url: "/dslist/",
-            dataType: "json",
-            success:function (arg) {
-                if (arg.status) {
-                    var plist = JSON.parse(arg.data)
-                    for(i=0;i<=plist.length;i++){
-                        list.innerHTML = list.innerHTML+"<a href=/prize/"+plist[i]["pk"]+">"+plist[i]["fields"]["name"]+plist[i]["fields"]["content"]+""
-                    }
-                }
-            }
-        })
-    })
-    //家庭日用
-    $('#jiating').click(function () {
-        list.innerHTML = null
-        bjiating.style.background = "#95a5a6"
-        all.style.background = "#2c3e50"
-        bdianzi.style.background = "#5a6268"
-        bfushi.style.background = "#5a6268"
-        bjiushui.style.background = "#5a6268"
-        bdajiang.style.background = "#5a6268"
-        $.ajax({
-            type: "GET",
-            url: "/jrlist/",
-            dataType: "json",
-            success:function (arg) {
-                if (arg.status) {
-                    var plist = JSON.parse(arg.data)
-                    for(i=0;i<=plist.length;i++){
-                        list.innerHTML = list.innerHTML+"<a href=/prize/"+plist[i]["pk"]+">"+plist[i]["fields"]["name"]+plist[i]["fields"]["content"]+""
-                    }
-                }
-            }
-        })
-    })
-    //服饰护理
-    $('#fushi').click(function () {
-        list.innerHTML = null
-        bfushi.style.background = "#95a5a6"
-        all.style.background = "#2c3e50"
-        bdianzi.style.background = "#5a6268"
-        bjiating.style.background = "#5a6268"
-        bjiushui.style.background = "#5a6268"
-        bdajiang.style.background = "#5a6268"
-        $.ajax({
-            type: "GET",
-            url: "/fhlist/",
-            dataType: "json",
-            success:function (arg) {
-                if (arg.status) {
-                    var plist = JSON.parse(arg.data)
-                    for(i=0;i<=plist.length;i++){
-                        list.innerHTML = list.innerHTML+"<a href=/prize/"+plist[i]["pk"]+">"+plist[i]["fields"]["name"]+plist[i]["fields"]["content"]+""
-                    }
-                }
-            }
-        })
-    })
-    //酒水食品
-    $('#jiushui').click(function () {
-        list.innerHTML = null
-        bjiushui.style.background = "#95a5a6"
-        all.style.background = "#2c3e50"
-        bdianzi.style.background = "#5a6268"
-        bjiating.style.background = "#5a6268"
-        bfushi.style.background = "#5a6268"
-        bdajiang.style.background = "#5a6268"
-        $.ajax({
-            type: "GET",
-            url: "/sjlist/",
-            dataType: "json",
-            success:function (arg) {
-                if (arg.status) {
-                    var plist = JSON.parse(arg.data)
-                    for(i=0;i<=plist.length;i++){
-                        list.innerHTML = list.innerHTML+"<a href=/prize/"+plist[i]["pk"]+">"+plist[i]["fields"]["name"]+plist[i]["fields"]["content"]+""
-                    }
-                }
-            }
-        })
-    })
-    //大奖
-    $('#dajiang').click(function () {
-        list.innerHTML = null
-        bdajiang.style.background = "#95a5a6"
-        all.style.background = "#2c3e50"
-        bdianzi.style.background = "#5a6268"
-        bjiating.style.background = "#5a6268"
-        bfushi.style.background = "#5a6268"
-        bjiushui.style.background = "#5a6268"
-        $.ajax({
-            type: "GET",
-            url: "/djlist/",
-            dataType: "json",
-            success:function (arg) {
-                if (arg.status) {
-                    var plist = JSON.parse(arg.data)
-                    for(i=0;i<=plist.length;i++){
-                        list.innerHTML = list.innerHTML+"<a href=/prize/"+plist[i]["pk"]+">"+plist[i]["fields"]["name"]+plist[i]["fields"]["content"]+""
-                    }
-                }
-            }
-        })
+        location.hash = 'all'
+        return false
     })
 
-    //启动时点击按钮
-    $('#all').trigger("click");
+    $("#dianzi").click(function () {
+        $(this).css('color','#9F79EE')
+        $("#allList").css('color','black')
+        $("#jiating").css('color','black')
+        $("#fushi").css('color','black')
+        $("#jiushui").css('color','black')
+        $("#dajiang").css('color','black')
+        $.ajax({
+            url:'/dslist/',
+            dataType:'html',
+            success:function (data) {
+                $("#litem").html(data)
+            }
+        })
+        location.hash = '电子&数码'
+        return false
+    })
+
+    $("#jiating").click(function () {
+        $(this).css('color','#9F79EE')
+        $("#dianzi").css('color','black')
+        $("#allList").css('color','black')
+        $("#fushi").css('color','black')
+        $("#jiushui").css('color','black')
+        $("#dajiang").css('color','black')
+        $.ajax({
+            url:'/jrlist/',
+            dataType:'html',
+            success:function (data) {
+                $("#litem").html(data)
+            }
+        })
+        location.hash = '家庭&日用'
+        return false
+    })
+
+    $("#fushi").click(function () {
+        $(this).css('color','#9F79EE')
+        $("#dianzi").css('color','black')
+        $("#jiating").css('color','black')
+        $("#allList").css('color','black')
+        $("#jiushui").css('color','black')
+        $("#dajiang").css('color','black')
+        $.ajax({
+            url:'/fhlist/',
+            dataType:'html',
+            success:function (data) {
+                $("#litem").html(data)
+            }
+        })
+        location.hash = '服饰&护理'
+        return false
+    })
+
+    $("#jiushui").click(function () {
+        $(this).css('color','#9F79EE')
+        $("#dianzi").css('color','black')
+        $("#jiating").css('color','black')
+        $("#fushi").css('color','black')
+        $("#allList").css('color','black')
+        $("#dajiang").css('color','black')
+        $.ajax({
+            url:'/sjlist/',
+            dataType:'html',
+            success:function (data) {
+                $("#litem").html(data)
+            }
+        })
+        location.hash = '食品&酒水'
+        return false
+    })
+
+    $("#dajiang").click(function () {
+        $(this).css('color','#9F79EE')
+        $("#dianzi").css('color','black')
+        $("#jiating").css('color','black')
+        $("#fushi").css('color','black')
+        $("#jiushui").css('color','black')
+        $("#allList").css('color','black')
+        $.ajax({
+            url:'/djlist/',
+            dataType:'html',
+            success:function (data) {
+                $("#litem").html(data)
+            }
+        })
+        location.hash = '超级大奖'
+        return false
+    })
+
+    $("#search").submit(function () {
+        event.preventDefault()||(event.returnValue=false);
+        var str = $("#str").val()
+        $.post("/search/",{'str':str},function (data) {
+            $("#litem").html(data)
+        })
+        location.hash = 'search='+ str
+    })
+
+$("#allList").trigger('click')
 });
-// function release() {
-//     var div = document.getElementById("release")
-//     div.style.display="block"
-// }
-// function closerelease() {
-//     var div = document.getElementById("release")
-//     div.style.display='none'
-// }

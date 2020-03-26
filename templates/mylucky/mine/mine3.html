@@ -1,0 +1,60 @@
+{% extends 'mylucky/mine/minebase.html' %}
+{% block content %}
+    {% load static %}
+<div class="container">
+  <h2>修改个人资料</h2>
+  <form action="/mineinfo/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="custom-file input-group">
+          <input type="file" class="custom-file-input" value="{{ user.img }}" id="customFile" name="customFile" accept="image/*" onchange="showImg(this)">
+          <label class="custom-file-label" for="customFile">修改头像</label>
+      </div>
+
+      <label>头像预览</label>
+      <img style="width: 100px" src="{% static user.img %}" alt="" id="img">
+
+      <script>
+          function showImg(obj) {
+            var file=$(obj)[0].files[0];    //获取文件信息
+            var imgdata='';
+            if(file)
+            {
+                var reader=new FileReader();  //调用FileReader
+                reader.readAsDataURL(file); //将文件读取为 DataURL(base64)
+                reader.onload=function(evt){   //读取操作完成时触发。
+                    $("#img").attr('src',evt.target.result)  //将img标签的src绑定为DataURL
+                };
+            }
+            else{
+                alert("上传失败");
+            }
+        }
+      </script>
+      <div class="input-group form-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">昵称</span>
+          </div>
+          <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}">
+      </div>
+      <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">邮箱</span>
+          </div>
+          <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}">
+      </div>
+      <div class="input-group form-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">手机</span>
+          </div>
+          <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
+      </div>
+      <div class="input-group form-group">
+          <div class="input-group-prepend">
+              <span class="input-group-text">密码</span>
+          </div>
+          <input type="password" class="form-control" id="pwd" name="pwd" value="{{ user.pwd }}">
+      </div>
+      <button type="submit" class="btn btn-primary">修改</button>
+  </form>
+</div>
+{% endblock %}

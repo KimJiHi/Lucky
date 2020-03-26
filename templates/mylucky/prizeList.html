@@ -1,0 +1,36 @@
+{% load static %}
+<div class="row">
+        {% for item in prize%}
+        <div class="col-md-3 blog-item-wrapper" id="items" data-aos="fade-up">
+            <div class="blog-item">
+                <div class="blog-img">
+                    <a href="/prize/{{ item.id }}/" data-toggle="tooltip" data-placement="bottom" title="发布时间：{{ item.creatTime }} 数量：{{ item.num }}">
+                        <img src="{% static item.img %}">
+                    </a>
+                </div>
+                <div class="blog-text" style="background: rgba(179,170,158,0.3)">
+                    <div class="blog-tag">
+                        <h6>
+                            {% if item.ptype == '1' %}
+                                <small>电子/数码</small>
+                                {% elif item.ptype == '2' %}
+                                <small>家庭/日用</small>
+                                {% elif item.ptype == '3' %}
+                                <small>服饰/护理</small>
+                                {% elif item.ptype == '4' %}
+                                <small>食品/酒水</small>
+                                {% elif item.ptype == '5' %}
+                                <small>超级大奖</small>
+                            {% endif %}
+                        </h6>
+                    </div>
+                    <div class="blog-title"><h4>{{ item.name }}</h4></div>
+                    <div class="blog-meta"><p>开奖时间：{{ item.usedTime }}</p></div>
+                    <div class="blog-desc"><p>{{ item.content }}</p></div>
+                    <div class="blog-met"><p>参与人数:{{item.joinNum}}</p></div>
+                    <div class="blog-author"><p>by {{ item.puser.name }}</p></div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>

@@ -1,13 +1,15 @@
 {% extends 'mylucky/mine/minebase.html' %}
 {% load static %}
 {% block content %}
-
-    <h1 id="uname">{{ name }}</h1>
+    <h1 class="display-4 text-left">{{ heading }}{{ user.name }}</h1>
+    <h1 style="display: none" id="uname">{{ user.name }}</h1>
     <h1 id="time"></h1>
     <h2 id="lunartime"></h2>
-    <button id="lbutton" onclick="setcookie('{{ name }}')">查看今日运势</button>
+    <button id="lbutton" onclick="setcookie('{{ user.name }}')">查看今日运势</button>
+    <h2 class="text-danger" style="float: right">大吉</h2>
     <table id="table">
-        <tr>
+    <tbody style="width: 900px">
+        <tr class="table-danger">
             <th>宜</th>
             <td>
                 <ul>
@@ -17,18 +19,17 @@
                 </ul>
             </td>
         </tr>
-        <tr>
+        <tr class="table-warning">
             <th>忌</th>
             <td>
                 <ul>
-                    <li>bbbb</li>
-                    <li>bbbb</li>
-                    <li>bbbb</li>
-                    <li>bbbb</li>
+                    <li id="li4"></li>
+                    <li id="li5"></li>
+                    <li id="li6"></li>
                 </ul>
             </td>
         </tr>
-
+    </tbody>
     </table>
 <script src="{% static 'mine/js/mine.js' %}"></script>
 {% endblock content %}

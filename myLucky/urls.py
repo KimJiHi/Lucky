@@ -6,7 +6,7 @@ urlpatterns = [
     path('register/', views.register),
     path('checkuserid/', views.checkuserid),
     path('login/', views.login),
-    path('checklogin/', views.checklogin),
+    # path('checklogin/', views.checklogin),
     path('home/', views.home),
     path('homelist/', views.homelist),
     path('dslist/', views.dslist),
@@ -14,12 +14,14 @@ urlpatterns = [
     path('fhlist/', views.fhlist),
     path('sjlist/', views.sjlist),
     path('djlist/', views.djlist),
-    # path('home/type/<int:num>', views.hometype),
+    # path('home/type/<int:num>/', views.type),
+    path('search/',views.search),
     # path('home/guess/', views.homeguess),
     path('release/',views.release),
     path('logout/', views.quit),
     path('prize/<int:num>/', views.prize),
     path('checkPrize/', views.checkPrize),
     path('mine/', views.mine),
-    path('mine/<int:num>/', views.mine2)
+    path('mine/<int:num>/<int:pageid>/', views.mine2),
+    path('mineinfo/',views.mineinfo)
 ]

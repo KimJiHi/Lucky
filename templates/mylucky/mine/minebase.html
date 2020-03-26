@@ -5,32 +5,45 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="{% static 'mine/css/mine.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/bootstrap.min.css' %}">
     <script type="text/javascript" src="{% static 'base/js/jquery-1.8.3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'base/js/popper.min.js' %}"></script>
 </head>
 <body>
 
 <div class="mainbg"></div>
 <div class="main">
     <div class="sidebar">
-        <div class="image"><img src="{% static 'media/img/default.png' %}"></div>
+{#        <div class="image">#}
+{#            <a href="#">#}
+{#            <img src="{% static 'media/img/default.png' %}">#}
+{#            </a>#}
+        <div class="hovereffect">
+            <img class="img-responsive" src="{% static user.img %}" alt="">
+            <div class="overlay">
+                <a class="info" href="/mineinfo/">编辑资料</a>
+            </div>
+        </div>
+{#        </div>#}
+
 
         <ul>
             <li><a href="/mine/">欢迎</a></li>
-            <li><a href="/mine/1/" id="joined">我参与的</a></li>
-            <li><a href="/mine/2/" id="fabu">我发布的</a></li>
-            <li><a href="/mine/3/" id="history">历史记录</a></li>
+            <li><a href="/mine/1/1/" id="joined">我参与的</a></li>
+            <li><a href="/mine/2/1/" id="fabu">我发布的</a></li>
+            <li><a href="/mine/3/1/" id="history">历史记录</a></li>
+            <li><a href="/mine/4/1/" id="mylucky">我中奖的</a></li>
             <li><a href="/home/" onclick="javaScript :history.back(-1)">返回</a></li>
         </ul>
     </div>
 
     <div class="sidecontent">
-        <h1>{{ heading }}</h1>
+{#        <h1 class="display-4 text-left">{{ heading }}{{ user.name }}</h1>#}
         {% block content %}
         {% endblock content %}
     </div>
 </div>
 
 </body>
-
-{#<script type="text/javascript" src="{% static 'mine/js/mine.js' %}"></script>#}
 </html>
