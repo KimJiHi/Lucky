@@ -64,25 +64,25 @@ def checkuserid(request):
 
 
 # 登录
-@csrf_exempt
-def login(request):
-    if request.method == "POST":
-        acc = request.POST.get('account')
-        pwd = request.POST.get('pwd')
-        pwd = password_encrypt(pwd)
-        user = User.objects.get(account=acc)
-        if pwd == user.pwd:
-            token = time.time() + random.randrange(1, 100000)
-            user.userToken = str(token)
-            user.save()
-            request.session['name'] = user.name
-            request.session['token'] = user.userToken
-            return redirect('/')
-        else:
-            messages.error(request, '密码错误')
-            return render(request, 'mylucky/login.html')
-    else:
-        return render(request, 'mylucky/login.html')
+# @csrf_exempt
+# def login(request):
+#     if request.method == "POST":
+#         acc = request.POST.get('account')
+#         pwd = request.POST.get('pwd')
+#         pwd = password_encrypt(pwd)
+#         user = User.objects.get(account=acc)
+#         if pwd == user.pwd:
+#             token = time.time() + random.randrange(1, 100000)
+#             user.userToken = str(token)
+#             user.save()
+#             request.session['name'] = user.name
+#             request.session['token'] = user.userToken
+#             return redirect('/')
+#         else:
+#             messages.error(request, '密码错误')
+#             return render(request, 'mylucky/login.html')
+#     else:
+#         return render(request, 'mylucky/login.html')
 
 
 # 验证登录
