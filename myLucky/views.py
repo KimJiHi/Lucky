@@ -15,15 +15,17 @@ from myLucky import models
 from .models import User, Prize, Attach
 from django.views.decorators.csrf import csrf_exempt
 
-
 # Create your views here.
 
 import hashlib
+
+
 def password_encrypt(pwd):
-    md5 = hashlib.md5()# 2，实例化md5() 方法
-    md5.update(pwd.encode())# 3，对字符串的字节类型加密
-    result = md5.hexdigest()# 4，加密
+    md5 = hashlib.md5()  # 2，实例化md5() 方法
+    md5.update(pwd.encode())  # 3，对字符串的字节类型加密
+    result = md5.hexdigest()  # 4，加密
     return result
+
 
 def homepage(request):
     name = request.session.get('name')
@@ -64,25 +66,9 @@ def checkuserid(request):
 
 
 # 登录
-# @csrf_exempt
-# def login(request):
-#     if request.method == "POST":
-#         acc = request.POST.get('account')
-#         pwd = request.POST.get('pwd')
-#         pwd = password_encrypt(pwd)
-#         user = User.objects.get(account=acc)
-#         if pwd == user.pwd:
-#             token = time.time() + random.randrange(1, 100000)
-#             user.userToken = str(token)
-#             user.save()
-#             request.session['name'] = user.name
-#             request.session['token'] = user.userToken
-#             return redirect('/')
-#         else:
-#             messages.error(request, '密码错误')
-#             return render(request, 'mylucky/login.html')
-#     else:
-#         return render(request, 'mylucky/login.html')
+@csrf_exempt
+def login(request):
+    return render(request, 'mylucky/login.html')
 
 
 # 验证登录
@@ -242,7 +228,7 @@ def prize(request, num):
     for attach in attachs:
         joiner = User.objects.get(pk=attach.attachUser_id)
         users.append(joiner)
-    #获得中奖人鱼名单
+    # 获得中奖人鱼名单
     luckyUser = []
     luckyAttach = Attach.objects.filter(Q(attachPrize_id=num) & Q(isLucky=True))
     for luckyattach in luckyAttach:
@@ -257,14 +243,15 @@ def prize(request, num):
             attach = Attach()
             attach.attachUser_id = user.id
             attach.attachPrize_id = pri.id
-            pri.joinNum+=1
+            pri.joinNum += 1
             pri.save()
             attach.save()
             messages.success(request, '参与成功')
             return redirect('/prize/' + str(num) + '/')
         else:
             messages.error(request, '抽奖码错误')
-    response = render(request, 'mylucky/prize.html', {'prize': pri, 'joiner': users, 'luckyuser': luckyUser, 'user': user})
+    response = render(request, 'mylucky/prize.html',
+                      {'prize': pri, 'joiner': users, 'luckyuser': luckyUser, 'user': user})
     response.set_cookie(user.account, cookies)
     return response
 
@@ -326,7 +313,7 @@ def mine2(request, num, pageid):
             return render(request, 'mylucky/mine/mine2.html',
                           {'list': page, 'type': 3, 'heading': '历史记录', 'user': user})
         else:
-            return render(request, 'mylucky/mine/mine2.html', {'heading': '历史记录', 'type': 3,'user':user})
+            return render(request, 'mylucky/mine/mine2.html', {'heading': '历史记录', 'type': 3, 'user': user})
     elif num == 4:
         prize = Attach.objects.filter(Q(attachUser=user.id) & Q(isLucky=True))
         list = models.Prize.objects.none()
@@ -335,6 +322,7 @@ def mine2(request, num, pageid):
         paginator = Paginator(list, 9)
         page = paginator.page(pageid)
         return render(request, 'mylucky/mine/mine2.html', {'list': page, 'type': 4, 'heading': '我中奖的', 'user': user})
+
 
 # 个人信息
 def mineinfo(request):
@@ -377,6 +365,8 @@ try:
     scheduler = BackgroundScheduler()
     # 调度器使用DjangoJobStore()
     scheduler.add_jobstore(DjangoJobStore(), "default")
+
+
     # 设置定时任务，选择方式为interval，时间间隔为10s
     # 另一种方式为每天固定时间执行任务，对应代码为：
     # @register_job(scheduler, 'cron', day_of_week='mon-fri', hour='9', minute='30', second='10',id='task_time')
@@ -411,9 +401,10 @@ try:
                 prize.isUsed = True
                 prize.save()
 
-                    # attachs = Attach.objects.get(attachUser_id=list_field)
-                    # print(attachs)
+                # attachs = Attach.objects.get(attachUser_id=list_field)
+                # print(attachs)
                 # prize.isUsed = True
+
 
     register_events(scheduler)
     scheduler.start()
