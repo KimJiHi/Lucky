@@ -76,10 +76,10 @@ WSGI_APPLICATION = 'Lucky.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'lucky',
+        'NAME': 'Lucky',
         'USER': 'root',
-        'PASSWORD': 'jinhui123',
-        'HOST': 'localhost',
+        'PASSWORD': 'fang@jie0416',
+        'HOST': '47.101.190.74',
         'POST': '3306',
     }
 }

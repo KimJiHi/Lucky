@@ -18,6 +18,13 @@ from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
+import hashlib
+def password_encrypt(pwd):
+    md5 = hashlib.md5()# 2，实例化md5() 方法
+    md5.update(pwd.encode())# 3，对字符串的字节类型加密
+    result = md5.hexdigest()# 4，加密
+    return result
+
 def homepage(request):
     name = request.session.get('name')
     return render(request, 'mylucky/homepage.html', {'user': name})
@@ -31,7 +38,9 @@ def register(request):
         user.name = request.POST.get('name')
         user.email = request.POST.get('email')
         user.phone = request.POST.get('phoneNumber')
-        user.pwd = request.POST.get('pwd')
+        pwd = request.POST.get('pwd')
+        pwd = password_encrypt(pwd)
+        user.pwd = pwd
         token = time.time() + random.randrange(1, 100000)
         user.userToken = str(token)
         user.save()
@@ -60,6 +69,7 @@ def login(request):
     if request.method == "POST":
         acc = request.POST.get('account')
         pwd = request.POST.get('pwd')
+        pwd = password_encrypt(pwd)
         user = User.objects.get(account=acc)
         if pwd == user.pwd:
             token = time.time() + random.randrange(1, 100000)
@@ -324,7 +334,9 @@ def mineinfo(request):
         user.name = request.POST.get('name')
         user.email = request.POST.get('email')
         user.phone = request.POST.get('phone')
-        user.pwd = request.POST.get('pwd')
+        pwd = request.POST.get('pwd')
+        pwd = password_encrypt(pwd)
+        user.pwd = pwd
         if request.POST.get('customFile') != '':
             img = request.FILES['customFile']
             imgurl = os.path.join(settings.USER_IMG, img.name)
