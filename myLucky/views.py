@@ -86,15 +86,25 @@ def login(request):
 
 
 # 验证登录
-# @csrf_exempt
-# def checklogin(request):
-#     acc = request.POST.get('account')
-#     pwd = request.POST.get('pwd')
-#     try:
-#         user = User.objects.get(account=acc, pwd=pwd)
-#         return JsonResponse({"data": "账号密码正确", "status": "success"})
-#     except User.DoesNotExist as e:
-#         return JsonResponse({"data": "密码错误", "status": "error"})
+@csrf_exempt
+def checklogin(request):
+    acc = request.POST.get('account')
+    pwd = request.POST.get('pwd')
+    pwd = password_encrypt(pwd)
+    try:
+        user = User.objects.get(account=acc)
+        try:
+            user = User.objects.get(account=acc, pwd=pwd)
+            token = time.time() + random.randrange(1, 100000)
+            user.userToken = str(token)
+            user.save()
+            request.session['name'] = user.name
+            request.session['token'] = user.userToken
+            return JsonResponse({"data": "账号密码正确", "status": "success"})
+        except User.DoesNotExist as e:
+            return JsonResponse({"data": "密码错误", "status": "error"})
+    except User.DoesNotExist as e:
+        return JsonResponse({"data": "帐号不存在", "status": "none"})
 
 
 # 主页

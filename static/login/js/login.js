@@ -13,10 +13,12 @@ function checklogin() {
             alert('密码错误')
             return false
         }
+        else if (data.status == 'none'){
+            alert('帐号不存在')
+            return false
+        }
         else {
-            form.method="POST"
-            form.action="/login/"
-            form.submit()
+            window.location.href='/home'
         }
     })
 }
